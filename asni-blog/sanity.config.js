@@ -6,7 +6,7 @@ import { schemaTypes } from './schemaTypes'
 export default defineConfig({
   name: 'default',
   title: 'ASNI Blog',
-  projectId: 'your-project-id',
+  projectId: 'xo1s4y3i',
   dataset: 'production',
   basePath: '/studio', // <-- Add this line so the studio works at /studio
   plugins: [structureTool()],
