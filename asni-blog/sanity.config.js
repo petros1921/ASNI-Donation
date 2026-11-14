@@ -1,17 +1,15 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+// Inside asni-blog/sanity.config.js
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { schemaTypes } from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'Asni Blog',
-
-  projectId: '7mqq8y0t',
+  title: 'ASNI Blog',
+  projectId: 'your-project-id',
   dataset: 'production',
-
-  plugins: [structureTool(), visionTool()],
-
+  basePath: '/studio', // <-- Add this line so the studio works at /studio
+  plugins: [structureTool()],
   schema: {
     types: schemaTypes,
   },
