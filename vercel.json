@@ -1,33 +1,10 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "services": {
-      "app": {
-        "root": ".",
-        "framework": "vite"
-      },
-      "asni-blog": {
-        "root": "asni-blog",
-        "framework": "sanity"
-      }
-    },
+    "framework": "vite",
     "rewrites": [
       {
-        "source": "/studio",
-        "destination": {
-          "service": "asni-blog"
-        }
-      },
-      {
-        "source": "/studio/(.*)",
-        "destination": {
-          "service": "asni-blog"
-        }
-      },
-      {
         "source": "/(.*)",
-        "destination": {
-          "service": "app"
-        }
+        "destination": "/index.html"
       }
     ]
   }
