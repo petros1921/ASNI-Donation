@@ -17,8 +17,8 @@ import IMG11 from '../../assets/Images/Gallery/IMG-11.jpg';
 import IMG12 from '../../assets/Images/Gallery/IMG-12.jpg';
 
 // --- IMPORT YOUR 2 VIDEOS ---
-import video1 from '../../assets/Videos/VID-1.mp4';
-import video2 from '../../assets/Videos/VID-2.mp4';
+// import video1 from '../../assets/Videos/VID-1.mp4';
+// import video2 from '../../assets/Videos/VID-2.mp4';
 
 // --- SET UP THE PHOTO DATA ---
 const photos = [
@@ -37,24 +37,24 @@ const photos = [
 ];
 
 // --- SET UP THE VIDEO DATA ---
-const videos = [
-  { 
-    id: 'v1', 
-    src: video1, 
-    poster: IMG1, 
-    title: 'The Class Rooms', 
-    description: 'This is the class room the students are learning in', 
-    duration: '1:49' 
-  },
-  { 
-    id: 'v2', 
-    src: video2, 
-    poster: IMG2, 
-    title: 'Giving', 
-    description: 'A videos of us giving the bags to the children', 
-    duration: '2:45' 
-  }
-];
+// const videos = [
+//   { 
+//     id: 'v1', 
+//     src: video1, 
+//     poster: IMG1, 
+//     title: 'The Class Rooms', 
+//     description: 'This is the class room the students are learning in', 
+//     duration: '1:49' 
+//   },
+//   { 
+//     id: 'v2', 
+//     src: video2, 
+//     poster: IMG2, 
+//     title: 'Giving', 
+//     description: 'A videos of us giving the bags to the children', 
+//     duration: '2:45' 
+//   }
+// ];
 
 function Gallery() {
   const [activeTab, setActiveTab] = useState('photos');
