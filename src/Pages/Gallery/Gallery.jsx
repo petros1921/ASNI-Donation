@@ -16,10 +16,6 @@ import IMG10 from '../../assets/Images/Gallery/IMG-10.jpg';
 import IMG11 from '../../assets/Images/Gallery/IMG-11.jpg';
 import IMG12 from '../../assets/Images/Gallery/IMG-12.jpg';
 
-// --- IMPORT YOUR 2 VIDEOS ---
-// import video1 from '../../assets/Videos/VID-1.mp4';
-// import video2 from '../../assets/Videos/VID-2.mp4';
-
 // --- SET UP THE PHOTO DATA ---
 const photos = [
   { id: 1, src: IMG1, alt: 'Students in class' },
@@ -37,24 +33,19 @@ const photos = [
 ];
 
 // --- SET UP THE VIDEO DATA ---
-// const videos = [
-//   { 
-//     id: 'v1', 
-//     src: video1, 
-//     poster: IMG1, 
-//     title: 'The Class Rooms', 
-//     description: 'This is the class room the students are learning in', 
-//     duration: '1:49' 
-//   },
-//   { 
-//     id: 'v2', 
-//     src: video2, 
-//     poster: IMG2, 
-//     title: 'Giving', 
-//     description: 'A videos of us giving the bags to the children', 
-//     duration: '2:45' 
-//   }
-// ];
+// Since the video files are too large for GitHub, we will leave this array empty for now.
+// Once you upload your videos to GitHub Releases or Cloudflare R2, you can paste the URLs here.
+const videos = [
+  // Example of how to add a video later:
+  // { 
+  //   id: 'v1', 
+  //   src: 'https://your-video-url-here.mp4', 
+  //   poster: IMG1, 
+  //   title: 'Our First Video', 
+  //   description: 'A short description of what happens in this video.', 
+  //   duration: '1:30' 
+  // },
+];
 
 function Gallery() {
   const [activeTab, setActiveTab] = useState('photos');
@@ -119,19 +110,25 @@ function Gallery() {
 
       {activeTab === 'videos' && (
         <section className="container videos-grid-gallery">
-          {videos.map((video) => (
-            <button key={video.id} className="video-card-gallery" onClick={() => setActiveVideo(video)} aria-label={`Play video: ${video.title}`}>
-              <div className="video-thumb">
-                <img src={video.poster} alt={video.title} loading="lazy" />
-                <div className="video-play-overlay"><div className="play-circle"><FaPlay /></div></div>
-                <span className="video-duration-badge">{video.duration}</span>
-              </div>
-              <div className="video-meta">
-                <h3>{video.title}</h3>
-                <p>{video.description}</p>
-              </div>
-            </button>
-          ))}
+          {videos.length === 0 ? (
+            <div style={{ textAlign: 'center', width: '100%', padding: '40px 0', color: 'var(--text-light)' }}>
+              <p>Videos are coming soon!</p>
+            </div>
+          ) : (
+            videos.map((video) => (
+              <button key={video.id} className="video-card-gallery" onClick={() => setActiveVideo(video)} aria-label={`Play video: ${video.title}`}>
+                <div className="video-thumb">
+                  <img src={video.poster} alt={video.title} loading="lazy" />
+                  <div className="video-play-overlay"><div className="play-circle"><FaPlay /></div></div>
+                  <span className="video-duration-badge">{video.duration}</span>
+                </div>
+                <div className="video-meta">
+                  <h3>{video.title}</h3>
+                  <p>{video.description}</p>
+                </div>
+              </button>
+            ))
+          )}
         </section>
       )}
 
