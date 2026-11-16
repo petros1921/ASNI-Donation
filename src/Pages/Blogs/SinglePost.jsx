@@ -1,7 +1,8 @@
+// src/Pages/Blogs/SinglePost.jsx
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { PortableText } from '@portabletext/react';
-import { client, urlFor } from '../../SanityClient';
+import { PrismicRichText } from '@prismicio/react';
+import { client } from '../../lib/prismic';
 import './SinglePost.css';
 
 export default function SinglePost() {
@@ -14,23 +15,14 @@ export default function SinglePost() {
     setLoading(true);
     setError(null);
 
-    const query = `*[_type == "post" && slug.current == $slug][0]{
-      _id,
-      title,
-      slug,
-      mainImage,
-      body,
-      _createdAt
-    }`;
-
     client
-      .fetch(query, { slug })
+      .getByUID('post', slug)
       .then((data) => {
         setPost(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Sanity fetch error:', err);
+        console.error('Prismic fetch error:', err);
         setError('Failed to load this post.');
         setLoading(false);
       });
@@ -50,45 +42,60 @@ export default function SinglePost() {
       <div className="container single-post-status">
         <h2>Post not found</h2>
         <p>The post you're looking for doesn't exist or has been removed.</p>
-        <Link to="/blogs" className="btn">Back to all posts</Link>
+        <Link to="/blogs" className="btn">
+          Back to all posts
+        </Link>
       </div>
     );
   }
 
-  const formattedDate = new Date(post._createdAt).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const formattedDate = post.data.date
+    ? new Date(post.data.date).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : new Date(post.first_publication_date).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
+
+  const title = post.data.title?.[0]?.text || 'Untitled Post';
+  const imageUrl = post.data.main_image?.url;
 
   return (
     <article className="single-post-page">
-      {/* Hero */}
       <div className="single-post-hero">
         <div className="single-post-hero-overlay" />
         <div className="container single-post-hero-content">
-          <Link to="/blogs" className="back-link">← Back to all posts</Link>
+          <Link to="/blogs" className="back-link">
+            ← Back to all posts
+          </Link>
           <p className="single-post-meta">{formattedDate}</p>
-          <h1>{post.title}</h1>
+          <h1>{title}</h1>
         </div>
       </div>
 
-      {/* Body */}
       <div className="container single-post-body">
-        {post.mainImage && (
+        {imageUrl && (
           <img
-            src={urlFor(post.mainImage).width(1200).url()}
-            alt={post.title}
+            src={`${imageUrl}&w=1200`}
+            alt={post.data.main_image.alt || title}
             className="single-post-image"
             loading="lazy"
           />
         )}
 
-        <PortableText value={post.body} />
+        <PrismicRichText field={post.data.content} />
 
         <div className="single-post-footer">
-          <Link to="/blogs" className="back-btn">← Back to all posts</Link>
-          <Link to="/donation" className="support-btn">Support a Student</Link>
+          <Link to="/blogs" className="back-btn">
+            ← Back to all posts
+          </Link>
+          <Link to="/donation" className="support-btn">
+            Support a Student
+          </Link>
         </div>
       </div>
     </article>

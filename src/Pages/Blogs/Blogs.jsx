@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { client } from "../../SanityClient.js";
-import PostCard from "./postcard/PostCard.jsx"; // Adjusted path
+import { useEffect, useState } from 'react';
+import { client } from '../../lib/prismic';
+import PostCard from './postcard/PostCard';
 import './Blogs.css';
 
 export default function Blogs() {
@@ -12,20 +12,18 @@ export default function Blogs() {
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "post"] | order(_createdAt desc){
-        _id,
-        title,
-        slug,
-        mainImage,
-        body,
-        _createdAt
-      }`)
+      .getAllByType('post', {
+        orderings: [
+          { field: 'my.post.date', direction: 'desc' },
+          { field: 'document.first_publication_date', direction: 'desc' },
+        ],
+      })
       .then((data) => {
         setPosts(data);
         setError(null);
       })
       .catch((err) => {
-        console.error('Sanity fetch error:', err);
+        console.error('Prismic fetch error:', err);
         setError('Failed to load posts. Please try again later.');
       })
       .finally(() => setLoading(false));
@@ -43,7 +41,6 @@ export default function Blogs() {
 
   return (
     <main className="blogs-page">
-      {/* --- Page Header --- */}
       <section className="blogs-hero">
         <div className="container blogs-hero-content">
           <p className="section-tag">Our Blog</p>
@@ -54,7 +51,6 @@ export default function Blogs() {
         </div>
       </section>
 
-      {/* --- Posts Grid --- */}
       <section className="container blogs-main">
         {loading && (
           <div className="blogs-status">
@@ -79,7 +75,7 @@ export default function Blogs() {
           <>
             <div className="post-grid">
               {currentPosts.map((post) => (
-                <PostCard key={post._id} post={post} />
+                <PostCard key={post.id} post={post} />
               ))}
             </div>
 
@@ -88,7 +84,7 @@ export default function Blogs() {
                 {Array.from({ length: totalPages }, (_, i) => (
                   <button
                     key={i}
-                    className={`page-btn ${currentPage === i + 1 ? "active" : ""}`}
+                    className={`page-btn ${currentPage === i + 1 ? 'active' : ''}`}
                     onClick={() => handlePageChange(i + 1)}
                   >
                     {i + 1}
