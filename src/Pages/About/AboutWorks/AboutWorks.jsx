@@ -1,8 +1,13 @@
-import Works_img from '../../../assets/Images/Works_image.png'; // Change to .jpg if needed
+import './AboutWorks.css';
+
+// Import real images from your Gallery folder
+import Works_img1 from '../../../assets/Images/Gallery/IMG-11.jpg';
+import Works_img2 from '../../../assets/Images/Gallery/IMG-12.jpg';
+
+// Import your custom icons
 import Donate_icon from '../../../assets/Icons/Donate.png';
 import Support_icon from '../../../assets/Icons/Support.png';
 import Impact_icon from '../../../assets/Icons/Impact.png';
-import './AboutWorks.css';
 
 const steps = [
   {
@@ -26,11 +31,11 @@ function AboutWorks() {
   return (
     <section className="container about-works">
       
-      {/* Left Side: Layered Image */}
+      {/* Left Side: Image Collage */}
       <div className="left-side-works">
-        <div className="works-image-wrapper">
-          <img src={Works_img} alt="How ASNI works" />
-          <div className="works-image-accent"></div>
+        <div className="works-collage-wrapper">
+          <img src={Works_img1} alt="Students learning" className="works-img-main" />
+          <img src={Works_img2} alt="Community impact" className="works-img-secondary" />
         </div>
       </div>
 

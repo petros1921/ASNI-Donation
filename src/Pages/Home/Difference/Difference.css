@@ -1,48 +1,57 @@
 .Difference {
   display: flex;
   align-items: center;
-  gap: 80px; 
-  padding-top: 100px;
-  padding-bottom: 100px;
+  gap: 100px; 
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
-/* --- Left Side (Image) --- */
+/* ============================================
+   LEFT SIDE: IMAGE COLLAGE
+   ============================================ */
 .left-side-dif {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.dif-image-wrapper {
+.dif-collage-wrapper {
   position: relative;
   width: 100%;
   max-width: 500px;
+  height: 550px; /* Fixed height for the collage */
 }
 
-.dif-image-wrapper img {
-  width: 100%;
-  height: auto;
-  border-radius: 24px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-}
-
-/* Decorative background shape behind the image */
-.dif-image-bg {
+/* Main tall image */
+.dif-img-main {
   position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 100%;
-  height: 100%;
-  background-color: var(--brand-dark); /* Deep green */
-  border-radius: 24px;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(31, 61, 51, 0.15);
   z-index: 1;
-  opacity: 0.1; /* Very subtle */
 }
 
-/* --- Right Side (Text) --- */
+/* Secondary overlapping image */
+.dif-img-secondary {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 65%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 8px solid var(--brand-light); /* Gap between images */
+  box-shadow: 0 15px 35px rgba(31, 61, 51, 0.2);
+  z-index: 2;
+}
+
+/* ============================================
+   RIGHT SIDE: TEXT & IMPACT CARDS
+   ============================================ */
 .right-side-dif {
   flex: 1;
   display: flex;
@@ -57,21 +66,36 @@
   margin-bottom: 10px;
 }
 
-/* --- Modern Impact List --- */
+/* --- Modern Impact Cards --- */
 .impact-list {
-  list-style: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  margin-top: 10px;
 }
 
-.impact-list li {
+.impact-card {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  background-color: var(--white);
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 61, 51, 0.05);
+  box-shadow: 0 4px 15px rgba(31, 61, 51, 0.03);
+  transition: var(--transition);
+}
+
+.impact-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(31, 61, 51, 0.08);
+  border-color: rgba(232, 163, 23, 0.3);
+}
+
+.impact-card p {
+  margin: 0;
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--brand-dark);
 }
 
@@ -80,13 +104,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background-color: rgba(232, 163, 23, 0.15); /* Soft gold background */
-  color: var(--primary-color); /* Gold text */
+  width: 32px;
+  height: 32px;
+  background-color: rgba(232, 163, 23, 0.15);
+  color: var(--primary-color);
   border-radius: 50%;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-weight: 800;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
@@ -94,13 +118,18 @@
 .buttons {
   display: flex;
   gap: 16px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
-/* --- Mobile Adjustments --- */
-@media (max-width: 968px) {
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
   .Difference {
-    gap: 50px;
+    gap: 60px;
+  }
+  .dif-collage-wrapper {
+    height: 450px;
   }
 }
 
@@ -108,9 +137,9 @@
   .Difference {
     flex-direction: column;
     text-align: center;
-    gap: 50px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    gap: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .left-side-dif,
@@ -123,9 +152,16 @@
   }
 
   .impact-list {
-    align-items: flex-start;
-    margin: 0 auto;
+    width: 100%;
+  }
+
+  .impact-card {
     text-align: left;
+    padding: 14px 16px;
+  }
+
+  .impact-card:hover {
+    transform: translateY(-3px); /* Change hover effect on mobile */
   }
 
   .buttons {
@@ -138,8 +174,8 @@
     width: 100%;
   }
   
-  .dif-image-bg {
-    bottom: -15px;
-    right: -15px;
+  .dif-collage-wrapper {
+    max-width: 100%;
+    height: 400px;
   }
 }

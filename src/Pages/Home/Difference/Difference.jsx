@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
-import Difference_img from '../../../assets/Images/Difference_img.png'; // Change to .jpg if needed
 import './Difference.css';
+
+// Import real images from your Gallery folder
+import IMG7 from '../../../assets/Images/Gallery/IMG-7.jpg';
+import IMG8 from '../../../assets/Images/Gallery/IMG-8.jpg';
 
 function Difference() {
   return (
     <section className="container Difference">
       
-      {/* Left Side: Layered Image */}
+      {/* Left Side: Image Collage */}
       <div className="left-side-dif">
-        <div className="dif-image-wrapper">
-          <img src={Difference_img} alt="Students making a difference" />
-          <div className="dif-image-bg"></div>
+        <div className="dif-collage-wrapper">
+          <img src={IMG7} alt="Students learning" className="dif-img-main" />
+          <img src={IMG8} alt="Community impact" className="dif-img-secondary" />
         </div>
       </div>
 
@@ -22,20 +25,20 @@ function Difference() {
           Every contribution helps a student pursue their dreams and create lasting change in their community.
         </p>
         
-        <ul className="impact-list">
-          <li>
+        <div className="impact-list">
+          <div className="impact-card">
             <span className="check-icon">✓</span>
-            Scholarships provided annually
-          </li>
-          <li>
+            <p>Scholarships provided annually</p>
+          </div>
+          <div className="impact-card">
             <span className="check-icon">✓</span>
-            Students supported in higher education
-          </li>
-          <li>
+            <p>Students supported in higher education</p>
+          </div>
+          <div className="impact-card">
             <span className="check-icon">✓</span>
-            Communities transformed through education
-          </li>
-        </ul>
+            <p>Communities transformed through education</p>
+          </div>
+        </div>
 
         <div className="buttons">
           <Link to="/donation" className="btn">Donate Now</Link>

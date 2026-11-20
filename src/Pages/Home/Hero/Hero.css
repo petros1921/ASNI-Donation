@@ -1,99 +1,105 @@
+/* --- Main Wrapper: Optimized Height --- */
 .hero-wrapper {
-  position: relative;
   width: 100%;
-  background-color: var(--brand-light);
+  /* Reduced from 100vh to 85vh so it fits better on screen */
+  min-height: 85vh; 
+  background-color: var(--brand-dark);
   overflow: hidden;
-  padding-top: 40px;
-  padding-bottom: 80px;
-}
-
-/* Decorative background accents */
-.hero-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(232, 163, 23, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-}
-
-.hero-inner {
   position: relative;
-  z-index: 1;
+}
+
+.hero-split {
+  display: flex;
+  width: 100%;
+  min-height: 85vh; /* Matches the wrapper */
+}
+
+/* ============================================
+   LEFT SIDE: TEXT & BACKGROUND IMAGE
+   ============================================ */
+.hero-left {
+  width: 45%; /* Text takes up 45% of the screen */
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  min-height: calc(100vh - 160px);
+  justify-content: flex-start;
+  padding: 60px 5% 60px 8%; /* Tighter padding to fit the 85vh height */
+  
+  /* UNCOMMENTED YOUR BACKGROUND IMAGE */
+  background-image: url('../../../assets/Images/Hero_background.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
 }
 
-/* --- Left Side --- */
-.left-side-home {
-  flex: 1;
+/* Dark green overlay so white text pops over the background image */
+.hero-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 61, 51, 0.95) 0%,
+    rgba(31, 61, 51, 0.85) 100%
+  );
+  z-index: -1;
+}
+
+/* Subtle pattern texture on the left side */
+.hero-left::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.hero-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   max-width: 600px;
+  z-index: 1;
 }
 
-.hero-tag {
-  display: inline-block;
-  background-color: rgba(232, 163, 23, 0.15);
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 8px 20px;
-  border-radius: 50px;
-  width: fit-content;
-}
-
-.left-side-home h1 {
-  font-size: 3.5rem;
-  line-height: 1.15;
+/* White text for dark background */
+.hero-content h1 {
+  font-size: 3.5rem; /* Slightly smaller to fit the new height */
+  line-height: 1.1;
   margin: 0;
-  color: var(--brand-dark);
+  color: var(--white);
+  letter-spacing: -1px;
 }
 
 .highlight {
   color: var(--primary-color);
   position: relative;
   display: inline-block;
-}
-
-.highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-color: rgba(232, 163, 23, 0.2);
-  z-index: -1;
-  border-radius: 10px;
+  font-style: italic;
+  font-family: "Volkhov", serif;
 }
 
 .hero-description {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: var(--text-light);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
 
 .buttons {
   display: flex;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-/* --- Trust Avatars --- */
+/* Trust Avatars */
 .hero-trust {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .avatars {
@@ -104,114 +110,118 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 3px solid var(--brand-light);
+  border: 3px solid var(--brand-dark);
   margin-left: -12px;
 }
 
-.avatars img:first-child {
-  margin-left: 0;
-}
+.avatars img:first-child { margin-left: 0; }
 
 .hero-trust p {
-  font-size: 0.9rem;
-  color: var(--text-light);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
 
-/* --- Right Side: Organic Image --- */
-.right-side-home {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero-trust b {
+  color: var(--primary-color);
 }
 
-.hero-image-container {
+/* ============================================
+   RIGHT SIDE: MASSIVE IMAGE CAROUSEL
+   ============================================ */
+.hero-right {
+  width: 55%; /* Images take up 55% of the screen */
   position: relative;
-  width: 100%;
-  max-width: 500px;
-}
-
-/* THIS IS THE MAGIC BLOB SHAPE */
-.image-blob {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(31, 61, 51, 0.15);
-  border: 8px solid var(--white);
-  animation: morphBlob 8s ease-in-out infinite;
+  background-color: var(--brand-light);
 }
 
-.image-blob img {
+.hero-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
+  /* THIS FIXES THE CROPPING: Focuses 20% from the top to save faces */
+  object-position: center 20%; 
+  
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  transform: scale(1.05); /* Slight zoom for a cinematic feel */
 }
 
-@keyframes morphBlob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+.hero-bg-img.active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1.2s ease-in-out, transform 6s linear; /* Ken Burns effect */
 }
 
-/* --- Floating Badge --- */
-.floating-badge {
+/* Blends the hard edge of the image into the dark left side */
+.hero-image-overlay {
   position: absolute;
-  bottom: 40px;
-  left: -30px;
-  background: var(--white);
-  padding: 16px 24px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  animation: float 4s ease-in-out infinite;
-  z-index: 2;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(31, 61, 51, 1) 0%,
+    rgba(31, 61, 51, 0.5) 10%,
+    transparent 35%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
-.badge-icon {
-  font-size: 1.5rem;
-  background: rgba(232, 163, 23, 0.1);
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.badge-title {
-  font-weight: 700;
-  color: var(--brand-dark);
-  margin: 0;
-  font-size: 1rem;
-}
-
-.badge-sub {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin: 0;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* --- Mobile --- */
-@media (max-width: 968px) {
-  .left-side-home h1 { font-size: 2.75rem; }
+/* ============================================
+   RESPONSIVE (MOBILE & TABLET)
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero-content h1 { font-size: 2.75rem; }
+  .hero-left { width: 50%; padding-left: 5%; }
+  .hero-right { width: 50%; }
 }
 
 @media (max-width: 768px) {
-  .hero-inner {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 40px;
-    padding-top: 20px;
+  .hero-wrapper {
+    min-height: auto; /* Allows the mobile version to stack naturally */
   }
-  .left-side-home { align-items: center; }
-  .left-side-home h1 { font-size: 2.25rem; }
+
+  .hero-split {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  /* Image moves to the top on mobile and gets taller */
+  .hero-right {
+    width: 100%;
+    height: 60vh; /* Increased from 50vh to show more of the image */
+    order: -1; 
+  }
+  
+  .hero-left {
+    width: 100%;
+    padding: 50px 5%;
+    min-height: auto;
+  }
+  
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-content h1 { font-size: 2.25rem; }
+  
   .buttons { flex-direction: column; width: 100%; }
   .buttons .btn, .buttons .btn2 { width: 100%; }
+  
   .hero-trust { flex-direction: column; gap: 10px; }
-  .floating-badge { left: 50%; transform: translateX(-50%); bottom: -20px; animation: none; }
-  .image-blob { aspect-ratio: 1/1; }
+  
+  /* Remove the side fade on mobile, add a bottom fade */
+  .hero-image-overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(31, 61, 51, 1) 100%
+    );
+  }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { FaBars, FaXmark, FaHeart } from "react-icons/fa6";
 import Logo from '../../assets/Icons/Logo.png';
 import './Navbar.css';
 
@@ -30,7 +30,7 @@ function Navbar() {
 
   const navLinks = [
     { path: '/about', label: 'About' },
-    { path: '/gallery', label: 'Gallery' }, // <-- ADDED HERE
+    { path: '/gallery', label: 'Gallery' },
     { path: '/blogs', label: 'Blogs' },
     { path: '/contact', label: 'Contact' },
   ];
@@ -56,8 +56,8 @@ function Navbar() {
             ))}
 
             <li>
-              <Link to="/donation" className="btn nav-donate-btn">
-                Donate Now
+              <Link to="/donation" className="nav-donate-btn">
+                <FaHeart className="btn-icon" /> Donate Now
               </Link>
             </li>
           </ul>

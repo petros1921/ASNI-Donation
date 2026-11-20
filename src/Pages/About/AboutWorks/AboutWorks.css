@@ -1,13 +1,15 @@
 .about-works {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 100px;
   width: 100%;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
-/* --- Left Side (Image) --- */
+/* ============================================
+   LEFT SIDE: IMAGE COLLAGE
+   ============================================ */
 .left-side-works {
   flex: 1;
   display: flex;
@@ -15,36 +17,43 @@
   align-items: center;
 }
 
-.works-image-wrapper {
+.works-collage-wrapper {
   position: relative;
   width: 100%;
   max-width: 500px;
+  height: 550px; /* Fixed height for the collage */
 }
 
-.works-image-wrapper img {
-  width: 100%;
-  height: auto;
+/* Main tall image */
+.works-img-main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(31, 61, 51, 0.15);
+  z-index: 1;
+}
+
+/* Secondary overlapping image */
+.works-img-secondary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  height: 50%;
   object-fit: cover;
   border-radius: 24px;
-  position: relative;
+  border: 8px solid var(--brand-light); /* Gap between images */
+  box-shadow: 0 15px 35px rgba(31, 61, 51, 0.2);
   z-index: 2;
-  box-shadow: 0 20px 40px rgba(31, 61, 51, 0.1);
 }
 
-/* Deep green offset frame */
-.works-image-accent {
-  position: absolute;
-  bottom: -20px;
-  left: -20px;
-  width: 100%;
-  height: 100%;
-  background-color: var(--brand-dark);
-  border-radius: 24px;
-  z-index: 1;
-  opacity: 0.1; /* Very subtle */
-}
-
-/* --- Right Side --- */
+/* ============================================
+   RIGHT SIDE: CONTENT
+   ============================================ */
 .right-side-works {
   flex: 1;
   display: flex;
@@ -89,7 +98,7 @@
 .bottom-content:hover {
   transform: translateX(8px); /* Shifts right on hover */
   box-shadow: 0 15px 40px rgba(31, 61, 51, 0.08);
-  border-color: rgba(232, 163, 23, 0.3); /* Gold border */
+  border-color: rgba(232, 163, 23, 0.3); /* Gold border on hover */
 }
 
 /* --- Icon Badge --- */
@@ -117,8 +126,9 @@
   transition: var(--transition);
 }
 
+/* Turn custom icons white on hover */
 .bottom-content:hover .step-icon img {
-  filter: brightness(0) invert(1); /* Icon turns white */
+  filter: brightness(0) invert(1); 
 }
 
 /* --- Step Text --- */
@@ -147,9 +157,12 @@
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .about-works {
-    gap: 50px;
+    gap: 60px;
+  }
+  .works-collage-wrapper {
+    height: 450px;
   }
   .right-side-works {
     max-width: 100%;
@@ -159,9 +172,9 @@
 @media (max-width: 768px) {
   .about-works {
     flex-direction: column-reverse;
-    gap: 50px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    gap: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .left-side-works,
@@ -179,8 +192,12 @@
     padding: 20px;
   }
 
-  .works-image-accent {
-    bottom: -15px;
-    left: -15px;
+  .bottom-content:hover {
+    transform: translateY(-3px); /* Change hover effect on mobile */
+  }
+
+  .works-collage-wrapper {
+    max-width: 100%;
+    height: 400px;
   }
 }

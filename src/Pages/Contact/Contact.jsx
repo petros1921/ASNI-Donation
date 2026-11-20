@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaPaperPlane } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import './Contact.css';
@@ -14,7 +14,6 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Connect to your backend / Formspree / EmailJS
     console.log('Form submitted:', formData);
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
@@ -102,7 +101,7 @@ function Contact() {
             <textarea
               id="message"
               name="message"
-              rows="6"
+              rows="5"
               placeholder="Enter your message"
               value={formData.message}
               onChange={handleChange}
@@ -111,7 +110,11 @@ function Contact() {
           </div>
 
           <button className="submit-btn" type="submit">
-            {submitted ? '✓ Message Sent!' : 'Send Message'}
+            {submitted ? '✓ Message Sent!' : (
+              <>
+                Send Message <FaPaperPlane className="btn-icon" />
+              </>
+            )}
           </button>
         </form>
       </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaArrowUp } from "react-icons/fa";
 import Logofooter from '../../assets/Icons/Logo.png'; 
 import './Footer.css';
 
@@ -9,7 +9,7 @@ function Footer() {
   const navigationLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
-    { path: '/gallery', label: 'Gallery' }, // <-- ADDED HERE
+    { path: '/gallery', label: 'Gallery' },
     { path: '/blogs', label: 'Blogs' },
     { path: '/contact', label: 'Contact' },
   ];
@@ -26,6 +26,10 @@ function Footer() {
     { icon: <FaInstagram />, url: 'https://instagram.com', label: 'Instagram' },
     { icon: <FaLinkedinIn />, url: 'https://linkedin.com', label: 'LinkedIn' },
   ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <footer className="footer">
@@ -90,8 +94,13 @@ function Footer() {
           </div>
         </div>
 
+        {/* Bottom Footer */}
         <div className="bottom-footer">
           <p>© {currentYear} ASNI Donation. All rights reserved.</p>
+          
+          <button onClick={scrollToTop} className="back-to-top" aria-label="Back to top">
+            Back to top <FaArrowUp />
+          </button>
         </div>
       </div>
     </footer>

@@ -1,4 +1,5 @@
 import Valuecard from './Valuecard/Valuecard';
+// Import your custom logo images
 import Transparency_img from '../../../assets/Icons/transparency.png';
 import Equality_img from '../../../assets/Icons/equality.png';
 import Community_img from '../../../assets/Icons/community.png';

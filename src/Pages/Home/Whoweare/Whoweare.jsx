@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
-import Whoweare_img from '../../../assets/Images/Whoweare_img.png'; // Ensure this is .png or .jpg
 import './Whoweare.css';
+
+// Import real images from your Gallery folder
+import Whoweare_img1 from '../../../assets/Images/Gallery/IMG-5.jpg'; 
+import Whoweare_img2 from '../../../assets/Images/Gallery/IMG-6.jpg'; 
 
 function Whoweare() {
   return (
@@ -38,9 +41,14 @@ function Whoweare() {
       </div>
 
       <div className="right-side-who">
-        <div className="who-image-wrapper">
-          <img src={Whoweare_img} alt="Our team in Ethiopia" />
-          {/* Decorative background shape */}
+        <div className="who-collage-wrapper">
+          {/* Main large image */}
+          <img src={Whoweare_img1} alt="Students in Ethiopia" className="who-img-main" />
+          
+          {/* Smaller overlapping image */}
+          <img src={Whoweare_img2} alt="Our community" className="who-img-secondary" />
+          
+          {/* Decorative gold frame behind the main image */}
           <div className="who-image-accent"></div>
         </div>
       </div>

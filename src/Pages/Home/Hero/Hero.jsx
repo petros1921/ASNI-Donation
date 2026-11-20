@@ -1,50 +1,67 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Hero_img from '../../../assets/Images/Gallery/Hero_img.jpg'; 
 import './Hero.css';
 
+// Import your real images for the big carousel
+import IMG1 from '../../../assets/Images/Gallery/IMG-1.jpg';
+import IMG2 from '../../../assets/Images/Gallery/IMG-2.jpg';
+import IMG3 from '../../../assets/Images/Gallery/IMG-3.jpg';
+import IMG4 from '../../../assets/Images/Gallery/IMG-4.jpg';
+
+const heroImages = [IMG1, IMG2, IMG3, IMG4];
+
 function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="hero-wrapper">
-      <div className="container hero-inner">
+      <div className="hero-split">
         
-        {/* Left Side: Text */}
-        <div className="left-side-home">
-          <h1>Empowering students in Ethiopia to <span className="highlight">dream bigger.</span></h1>
-          <p className="hero-description">
-            Every contribution helps a student break the cycle of poverty. 
-            We connect donors with talented students who need support to pursue their dreams.
-          </p>
-          <div className="buttons">
-            <Link to="/donation" className="btn">Donate Now</Link>
-            <Link to="/about" className="btn2">Learn More</Link>
-          </div>
-          <div className="hero-trust">
-            <div className="avatars">
-              <img src="https://i.pravatar.cc/100?img=1" alt="Donor" />
-              <img src="https://i.pravatar.cc/100?img=2" alt="Donor" />
-              <img src="https://i.pravatar.cc/100?img=3" alt="Donor" />
+        {/* Left Side: Text Overlay */}
+        <div className="hero-left">
+          <div className="hero-content">
+            <h1>Empowering students in Ethiopia to <span className="highlight">dream bigger.</span></h1>
+            <p className="hero-description">
+              Every contribution helps a student break the cycle of poverty. 
+              We connect donors with talented students who need support to pursue their dreams.
+            </p>
+            
+            <div className="buttons">
+              <Link to="/donation" className="btn">Donate Now</Link>
+              <Link to="/about" className="btn2">Learn More</Link>
             </div>
-            <p>Join <b>2,000+</b> monthly donors</p>
+
+            <div className="hero-trust">
+              <div className="avatars">
+                <img src="https://i.pravatar.cc/100?img=1" alt="Donor" />
+                <img src="https://i.pravatar.cc/100?img=2" alt="Donor" />
+                <img src="https://i.pravatar.cc/100?img=3" alt="Donor" />
+              </div>
+              <p>Join <b>2,000+</b> monthly donors</p>
+            </div>
           </div>
         </div>
 
-        {/* Right Side: Organic Image Shape */}
-        <div className="right-side-home">
-          <div className="hero-image-container">
-            {/* CSS Blob Shape */}
-            <div className="image-blob">
-              <img src={Hero_img} alt="Ethiopian student" />
-            </div>
-            
-            {/* Floating Badge */}
-            <div className="floating-badge">
-              <div className="badge-icon">💛</div>
-              <div>
-                <p className="badge-title">100% Secure</p>
-                <p className="badge-sub">Goes to students</p>
-              </div>
-            </div>
-          </div>
+        {/* Right Side: Massive Edge-to-Edge Carousel */}
+        <div className="hero-right">
+          {heroImages.map((img, i) => (
+            <img 
+              key={i} 
+              src={img} 
+              alt="Student in Ethiopia" 
+              className={`hero-bg-img ${i === index ? 'active' : ''}`} 
+            />
+          ))}
+          
+          {/* Optional: Subtle overlay to blend the image with the left side */}
+          <div className="hero-image-overlay"></div>
         </div>
 
       </div>

@@ -1,57 +1,107 @@
 .stats-wrapper {
-    width: 100%;
-    background-color: var(--brand-dark);
-    padding: 60px 0;
-    margin-top: -40px; /* Overlaps the hero slightly */
-    position: relative;
-    z-index: 10;
-  }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  /* Pulls the card up to overlap the Hero section */
+  margin-top: -60px; 
+  padding-bottom: 40px;
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: linear-gradient(135deg, var(--brand-dark) 0%, #152f27 100%);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(31, 61, 51, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for the individual items */
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Add a subtle separator between items (except the last one) */
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  opacity: 0.9;
+}
+
+.stat-number {
+  font-family: "Volkhov", serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 4px 15px rgba(232, 163, 23, 0.3); /* Glow effect on numbers */
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 968px) {
+  .stats-card {
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    text-align: center;
+    padding: 30px;
+    margin-top: 20px; /* Less overlap on tablet */
   }
-  
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Remove the vertical line for tablet (since it's 2x2 now) */
+  .stat-item::after {
+    display: none;
   }
-  
-  .stat-item:last-child {
-    border-right: none;
+}
+
+@media (max-width: 768px) {
+  .stats-wrapper {
+    margin-top: -30px; /* Small overlap on mobile */
   }
-  
+
+  .stats-card {
+    padding: 24px;
+  }
+
   .stat-number {
-    font-family: "Volkhov", serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin: 0;
-    line-height: 1;
+    font-size: 2.25rem;
   }
-  
+
   .stat-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
+    font-size: 0.75rem;
   }
-  
-  @media (max-width: 768px) {
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px 20px;
-    }
-    .stat-item:nth-child(2) {
-      border-right: none;
-    }
-    .stat-number {
-      font-size: 2.25rem;
-    }
-  }
+}

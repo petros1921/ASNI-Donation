@@ -1,12 +1,14 @@
-/* --- Outer wrapper: FULL WIDTH dark background --- */
+/* --- Outer wrapper --- */
 .footer {
   width: 100%;
-  background-color: var(--brand-dark); /* Deep Forest Green */
+  background-color: var(--brand-dark);
   color: var(--white);
   padding-top: 80px;
   padding-bottom: 30px;
   position: relative;
   overflow: hidden;
+  /* Subtle divider from the page content above */
+  border-top: 1px solid rgba(255, 255, 255, 0.05); 
 }
 
 /* Subtle decorative glow in the corner */
@@ -37,22 +39,21 @@
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 60px;
   padding-bottom: 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* --- Generic Column --- */
 .footer-col {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Volkhov Serif for Column Titles */
 .footer-col h3 {
   font-family: "Volkhov", serif;
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--primary-color); /* Gold titles */
+  color: var(--primary-color);
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -60,14 +61,14 @@
 /* --- Logo + Description Column --- */
 .footer-logo-wrapper {
   background-color: var(--white);
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
-  margin-bottom: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .logontext img {
@@ -77,9 +78,9 @@
 }
 
 .logontext p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
   max-width: 320px;
 }
@@ -96,18 +97,17 @@
 
 .footer-col ul li {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition: var(--transition);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-col ul li a {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   transition: var(--transition);
   position: relative;
   display: inline-block;
 }
 
-/* Hover: link slides right and turns brand-yellow */
+/* Hover: link slides right and turns brand-gold */
 .footer-col ul li a:hover {
   color: var(--primary-color);
   transform: translateX(4px);
@@ -117,14 +117,14 @@
 .footer-icons {
   display: flex;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .footer-icons a {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px; /* Modern squircle shape */
-  background-color: rgba(255, 255, 255, 0.1);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,19 +137,51 @@
   background-color: var(--primary-color);
   color: var(--white);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(232, 163, 23, 0.4);
+  box-shadow: 0 8px 20px rgba(232, 163, 23, 0.3);
 }
 
 /* --- Bottom Footer --- */
 .bottom-footer {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 30px;
 }
 
 .bottom-footer p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
+}
+
+/* --- Back to Top Button --- */
+.back-to-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.back-to-top:hover {
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.back-to-top svg {
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-3px);
 }
 
 /* ============================================
@@ -186,7 +218,9 @@
     font-size: 1.15rem;
   }
 
-  .bottom-footer p {
-    font-size: 0.8rem;
+  .bottom-footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
   }
 }

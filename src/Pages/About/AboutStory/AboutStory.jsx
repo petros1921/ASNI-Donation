@@ -1,5 +1,7 @@
-import Story_img from '../../../assets/Images/Story_img.png'; // Change to .jpg if needed
 import './AboutStory.css';
+
+// Import a real image from your gallery
+import Story_img from '../../../assets/Images/Gallery/IMG-10.jpg'; 
 
 function AboutStory() {
   return (

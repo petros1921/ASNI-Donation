@@ -1,10 +1,10 @@
 .about-story {
   display: flex;
   align-items: center;
-  gap: 80px; /* Increased gap for premium look */
+  gap: 100px;
   width: 100%;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 /* --- Left Side: Image --- */
@@ -18,17 +18,21 @@
 .story-image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
 }
 
 .story-image-wrapper img {
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 5; /* Forces a consistent portrait shape */
   object-fit: cover;
-  border-radius: 24px;
+  
+  /* ARCH SHAPE: Rounded top, slightly rounded bottom */
+  border-radius: 200px 200px 24px 24px; 
+  
   position: relative;
   z-index: 2;
-  box-shadow: 0 20px 40px rgba(31, 61, 51, 0.1);
+  box-shadow: 0 20px 40px rgba(31, 61, 51, 0.15);
 }
 
 /* Gold Frame behind image */
@@ -38,32 +42,37 @@
   left: -20px;
   width: 100%;
   height: 100%;
-  border: 4px solid var(--primary-color);
-  border-radius: 24px;
+  border: 3px solid var(--primary-color);
+  border-radius: 200px 200px 24px 24px; /* Matches the image */
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 /* Floating Badge */
 .story-badge {
   position: absolute;
-  bottom: -20px;
-  right: -20px;
-  background-color: var(--brand-dark);
+  bottom: 30px;
+  right: -30px;
+  /* Glassmorphism effect */
+  background: rgba(31, 61, 51, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
   color: var(--white);
-  padding: 16px 24px;
-  border-radius: 16px;
+  padding: 20px 28px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 15px 30px rgba(31, 61, 51, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   z-index: 3;
   animation: floatBadge 4s ease-in-out infinite;
 }
 
 .story-badge-number {
   font-family: "Volkhov", serif;
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--primary-color);
   line-height: 1;
@@ -72,15 +81,15 @@
 .story-badge-text {
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 6px;
 }
 
 @keyframes floatBadge {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* --- Right Side: Text --- */
@@ -102,12 +111,12 @@
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .about-story {
-    gap: 50px;
+    gap: 60px;
   }
-  .right-side-story {
-    max-width: 100%;
+  .story-image-wrapper {
+    max-width: 400px;
   }
 }
 
@@ -115,9 +124,9 @@
   .about-story {
     flex-direction: column-reverse;
     text-align: center;
-    gap: 50px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    gap: 60px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .left-side-story {
@@ -130,14 +139,23 @@
     max-width: 100%;
   }
 
+  .story-image-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
   .story-image-accent {
     top: 15px;
     left: -15px;
   }
   
   .story-badge {
-    bottom: -15px;
-    right: -10px;
-    padding: 12px 20px;
+    bottom: 20px;
+    right: -15px;
+    padding: 16px 20px;
+  }
+  
+  .story-badge-number {
+    font-size: 1.75rem;
   }
 }
